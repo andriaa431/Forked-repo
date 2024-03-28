@@ -9,6 +9,7 @@ my-mail-project/
 ├── frontend/
 └── .gitignore
 ```
+**შენიშვნა**: git-ის repository იქნება `my-mail-project`. `.gitignore` ან git-ის repository თითოეულ ფოლდერში (backend, frontend) *არ* დაამატოთ. frontend-ში დაგხვდებათ `.gitignore`, რომელსაც `vite` აგენერირებს, შეგიძლიათ ეგ გამოიყენოთ, ოღონდ frontend ფოლდერიდან პროექტის root-ში გადაიტანეთ, როგორც სტრუქტურის აღწერაშია.
 
 #### Frontend
 ```
