@@ -64,6 +64,27 @@ const ProtectedRoute = () => {
 
 გადამისამართებისთვის შესაძლოა უფრო მოსახერხებელი იყოს [Navigate *კომპონენტი*](https://reactrouter.com/en/6.22.3/components/navigate) react-router-dom-დან. `useEffect`-ის გამოყენება აღარ დაგჭირდებათ.
 
+### Git
+
+ცვლილებების შემდეგ (თქვენზეა დამოკიდებული რამდენად ხშირად, რას ჩათვლით საკმარის ცვლილებად) გამოიყენეთ Git და კოდი ატვირთეთ Github-ზე:
+
+#### Staging გარემოში დამატება
+```bash
+# თითო-თითო ფაილის დამატება
+git add file1
+
+# ან Current directory/subdirectory-ებიდან ყველა ფაილის დამატება
+git add . 
+```
+
+#### Commit & push
+```
+git commit -m "Add reply functionality"
+git push
+```
+
+ოპერაციების თანმიმდევრობაა `add`, `commit` და ბოლოს `push`.
+
 ### სხვა
 
 თარიღების ფორმატირებისთვის შეგიძლიათ გამოიყენოთ [`toLocaleDateString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString) ან სხვა რომელიმე მეთოდი.
