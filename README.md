@@ -98,3 +98,39 @@ new Date(email.sentAt).toLocaleDateString(locales, options)
 ```
 mailText.split("\n") // do something with this
 ```
+
+#### input ველის ფოკუსირება პირველი რენდერისას + კურსორის პირველ ხაზზე მოთავსება
+
+```jsx
+useEffect(() => {
+  textareaRef.current.focus()
+  textareaRef.current.setSelectionRange(0, 0)
+}, [])
+```
+
+#### სხვა გვერდისთვის ინფორმაციის გადაცემა / ველების შევსება
+
+მარტივი შემთხვევებისას, უცვლელი ინფორმაციისთვის შეგიძლიათ გამოიყენოთ [`navigate`](https://reactrouter.com/en/main/components/navigate) ფუნქციის `state` კონფიგურაცია. `state`-ის შიგთავსი URL-ში არ გამოჩნდება.
+
+```jsx
+navigate("/compose", { state: { email: emailObjToReplyTo } })
+```
+
+compose გვერდიდან ამ state-ს [`useLocation`](https://reactrouter.com/en/main/hooks/use-location#locationstate) hook-ით წაიკითხავთ
+
+```jsx
+import { useLocation } from "react-router-dom"
+
+// ...
+
+const location = useLocation()
+
+// location.state.email
+// use email object for prepopulating form fields
+```
+
+ამ გადაცემული state-ით შეგიძლიათ ველების/მნიშვნელობების წინასწარ და _მყისიერად_ შევსება.
+
+_ზოგადად_, **უფრო დინამიური და უსაფრთხო ალტერნატივაა** გადასასვლელ გვერდზე `useEffect`-ის და `fetch`-ის გამოყენება (გადასასვლელ გვერდზე ყოველი ნავიგაციისას განახლებული ინფორმაცია წამოვა).
+
+თუმცა ამ პროექტში mail-ების შიგთავსი არ იცვლება, ამიტომ შეგიძლიათ `navigate` და `state` კონფიგურაციაც გამოიყენოთ.
