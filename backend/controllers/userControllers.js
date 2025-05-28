@@ -38,4 +38,5 @@ export const login = asyncHandler(async (req, res) => {
 
 export const logout = asyncHandler(async (req, res) => {
   // TODO: clear cookie, destroy session
+  
 })

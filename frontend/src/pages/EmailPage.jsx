@@ -1,9 +1,11 @@
-import { useNavigate, useParams } from "react-router"
+import { redirect, useNavigate, useParams } from "react-router"
 import { Button } from "@/components/ui/button"
 import { useContext, useEffect, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { AuthContext } from "@/components/AuthContext"
 import { formatDate } from "@/lib/utils"
+import { Inbox } from "lucide-react"
+import { EmailList } from "@/components/EmailList"
 
 export const Email = () => {
   const { emailCategory, emailId } = useParams()
@@ -13,7 +15,11 @@ export const Email = () => {
   const { user } = useContext(AuthContext)
 
   const deleteEmail = async () => {
-    // TODO: delete email by <emailId>, redirect to the inbox page
+
+     if (emailId = true){
+      setEmail("")
+      redirect = Inbox
+     }
   }
 
   const reply = () => {
@@ -33,6 +39,9 @@ export const Email = () => {
 
   const toggleArchive = async () => {
     // TODO: toggle the email archive status to true/false
+    Email.map( (emails)=> {
+     emails.archive
+    })
   }
 
   const formatTextWithNewlines = (text) => {
@@ -56,16 +65,19 @@ export const Email = () => {
     <div>
       <div>
         <h2 className="font-medium text-3xl">
-          {/* TODO: show email subject */}
+          {/* TODO: show email subject */
+          }
         </h2>
         <Badge className="my-4">
-          {/* TODO: show email category */}
+          {
+          emailCategory}
         </Badge>
         <ul className="pb-4 border-b flex flex-col gap-2">
           <li>
             <span className="font-bold">From:</span>{" "}
             <span>
-              {/* TODO: show email sender */}
+              {/* TODO: show email sender */
+              }
             </span>
           </li>
           <li>

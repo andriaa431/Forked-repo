@@ -1,5 +1,7 @@
 import asyncHandler from "express-async-handler"
 import { Email, User } from "../models.js"
+import { useState } from "react"
+import session from "express-session"
 
 export const createEmail = asyncHandler(async (req, res) => {
   // recipients field is a comma separated email STRING
@@ -7,14 +9,25 @@ export const createEmail = asyncHandler(async (req, res) => {
   // (we cal also have a single email without any commas)
   const { recipients, subject, body } = req.body
 
-  // TODO: transfer recipients STRING into a LIST of email strings using .split
-  const emails = []
+  const emails = [recipients.split]
+  
+ 
+ 
 
   const recipientUsers = await User.find({ email: { $in: emails } })
-
+const ids = recipientUsers.map((Recipient) => {
+  {Recipient.id}
+})
+  
   const email = await Email.create({
-    // TODO: save email fields
+
+    // TODO: save email fields     
     // sender (logged in user id)
+    sender: req.user,
+    recipients: ids,
+    subject, body
+
+    
     // recipients: (recipientUsers BUT only ids, you can use map)
     // subject, body
   })
@@ -31,6 +44,7 @@ export const getEmailCategory = asyncHandler(async (req, res) => {
     case "inbox":
       // TODO: 
       // find emails that are NOT archived
+      Email.archived = false
       // and that have logged in user id in the recipient list (logged in user received email in inbox)
       // then sort by newest emails and populate sender & email fields using .populate method
       
@@ -52,6 +66,11 @@ export const getEmailCategory = asyncHandler(async (req, res) => {
       // then sort by newest emails and populate sender & email fields using .populate method
       
       // emails = 
+       if (archiveEmail){
+        const _id = req.params
+        
+       }
+
       
       break
     default:
@@ -72,8 +91,10 @@ export const getEmail = asyncHandler(async (req, res) => {
       // with <emailId> is in the logged in user's inbox or the logged in user sent it
       // otherwise, it's someone else's email and we shouldn't be able to see it
       $or: [{ recipients: req.user._id }, { sender: req.user._id }]
-    })
+    }) 
     // TODO: populate sender and recipients ids using.populate method
+       
+    
   } catch (e) {
     console.log(e.stack)
     res.status(400).json({ message: e.message })

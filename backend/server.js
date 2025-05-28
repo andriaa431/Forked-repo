@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Router } from "express"
 import mongoose from "mongoose"
 import session from "express-session"
 import MongoStore from "connect-mongo"
@@ -6,6 +6,9 @@ import cors from "cors"
 import dotenv from "dotenv"
 import morgan from "morgan"
 import { handleError } from "./middleware.js"
+import { userRouter } from "./routes/userRoutes.js"
+import { emailRouter } from "./routes/emailRoutes.js"
+
 
 dotenv.config({ path: "./config/.env" })
 
@@ -37,7 +40,11 @@ app.use(
   })
 )
 
-// TODO: Add /users and /emails routers (emailRoutes.js, userRoutes.js)
+
+
+app.use("/users", userRouter)
+
+app.use("/emails", emailRouter)
 
 app.use(handleError)
 
